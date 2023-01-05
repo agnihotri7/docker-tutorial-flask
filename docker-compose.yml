@@ -1,0 +1,24 @@
+version: "3.1"
+
+services:
+  web:
+    image: mypyweb:latest
+    entrypoint: [ "/bin/sh", "-c" ]
+    ports:
+      - 8000:8000
+    command:
+      [
+        "/usr/local/bin/python app.py"
+      ]
+    volumes:
+      - "./:/app"
+    depends_on:
+      - db
+  db:
+    image: postgres:13.3
+    restart: always
+    ports:
+      - 5333:5432
+    env_file: .env
+    volumes:
+      - "./data:/var/lib/postgresql1/d33"

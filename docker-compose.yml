@@ -21,4 +21,11 @@ services:
       - 5333:5432
     env_file: .env
     volumes:
-      - "./data:/var/lib/postgresql1/d33"
+      - "./data:/var/lib/postgresql/data"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
